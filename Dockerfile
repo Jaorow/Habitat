@@ -35,8 +35,7 @@ WORKDIR /app
 COPY --from=backend /app /app
 
 # Copy the built React frontend into the backend's static folder
-# Dont need to copy build as we auto build into said folder
-# COPY --from=frontend /frontend/build /app/frontend_build
+COPY --from=frontend /frontend/build /app/frontend_build
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -45,4 +44,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Command to run the FastAPI app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
