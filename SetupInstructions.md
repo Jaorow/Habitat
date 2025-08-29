@@ -108,11 +108,4 @@ gcloud iam service-accounts create github-deployer \
 ```
 
 
-create GCP artifact repo
-```
-gcloud projects add-iam-policy-binding jaorow \
-  --member="serviceAccount:DEPLOYER_SA@jaorow.iam.gserviceaccount.com" \
-  --role="roles/artifactregistry.writer"
-
-gcloud artifacts repositories list --location=australia-southeast1
-```
+create GCP artifact repo in GCP called app
