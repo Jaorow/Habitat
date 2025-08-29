@@ -51,7 +51,7 @@ gcloud iam workload-identity-pools describe "github" \
   --location="global" \
   --format="value(name)"
 ```
-this should return `projects/123456789/locations/global/workloadIdentityPools/github`
+this should return WIP_ID = `projects/123456789/locations/global/workloadIdentityPools/github`
 
 3. 
 ```
@@ -84,9 +84,35 @@ echo -n "my-secret-value" | gcloud secrets create my-secret \
   --replication-policy="automatic" \
   --data-file=-
 ```
+! These are case sensitive
+WIP ID is what we printed before and repo must be case sensitive
 ```
 gcloud secrets add-iam-policy-binding "my-secret" \
   --project="${PROJECT_ID}" \
   --role="roles/secretmanager.secretAccessor" \
   --member="principalSet://iam.googleapis.com/${WORKLOAD_IDENTITY_POOL_ID}/attribute.repository/${REPO}"
+```
+
+```
+gcloud iam workload-identity-pools providers update-oidc "my-repo" \
+  --project="${PROJECT_ID}" \
+  --location="global" \
+  --workload-identity-pool="github" \
+  --attribute-condition="assertion.repository == '${Github_Account}/${Repo}'"
+```
+
+create a service account
+```
+gcloud iam service-accounts create github-deployer \
+  --display-name="GitHub Actions Deployer"
+```
+
+
+create GCP artifact repo
+```
+gcloud projects add-iam-policy-binding jaorow \
+  --member="serviceAccount:DEPLOYER_SA@jaorow.iam.gserviceaccount.com" \
+  --role="roles/artifactregistry.writer"
+
+gcloud artifacts repositories list --location=australia-southeast1
 ```
