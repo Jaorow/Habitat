@@ -73,3 +73,20 @@ gcloud iam workload-identity-pools providers describe "my-repo" \
   --workload-identity-pool="github" \
   --format="value(name)"
 ```
+
+5. 
+
+```
+gcloud config set project jaorow
+```
+```
+echo -n "my-secret-value" | gcloud secrets create my-secret \
+  --replication-policy="automatic" \
+  --data-file=-
+```
+```
+gcloud secrets add-iam-policy-binding "my-secret" \
+  --project="${PROJECT_ID}" \
+  --role="roles/secretmanager.secretAccessor" \
+  --member="principalSet://iam.googleapis.com/${WORKLOAD_IDENTITY_POOL_ID}/attribute.repository/${REPO}"
+```
