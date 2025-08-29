@@ -1,0 +1,49 @@
+# Python (FastAPI backend)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env.*
+*.sqlite3
+instance/
+.webassets-cache
+db.sqlite3
+*.db
+*.log
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Python virtual environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Pytest
+.pytest_cache/
+
+# Misc
+*.swp
+*.swo
+.idea/
+
+build/
