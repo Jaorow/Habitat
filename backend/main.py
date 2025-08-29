@@ -21,9 +21,11 @@ app.add_middleware(
 )
 
 
-# Serve the React build folder
-frontend_build_path = Path("build")
+
+frontend_build_path = Path(__file__).parent / "frontend_build"
+
 app.mount("/static", StaticFiles(directory=frontend_build_path / "static"), name="static")
+app.mount("/", StaticFiles(directory=frontend_build_path, html=True), name="frontend")
 
 # app.include_router(api_router, prefix="/api")
 
