@@ -32,6 +32,14 @@ Head to GCP and set up a new project and set up the following APIs
 - Cloud Run (run.googleapis.com)
 - IAM Credentials API (iamcredentials.googleapis.com)
 
+```
+gcloud services enable \
+  run.googleapis.com \
+  artifactregistry.googleapis.com \
+  iamcredentials.googleapis.com \
+  secretmanager.googleapis.com
+```
+
 ### configure a WIP for github
 https://github.com/google-github-actions/auth#preferred-direct-workload-identity-federation.
 
@@ -107,5 +115,17 @@ gcloud iam service-accounts create github-deployer \
   --display-name="GitHub Actions Deployer"
 ```
 
+```
+gcloud projects add-iam-policy-binding jaorow \
+  --member="serviceAccount:github-deployer@jaorow.iam.gserviceaccount.com" \
+  --role="roles/run.admin"
+```
+```
+gcloud secrets add-iam-policy-binding gcp-key \
+  --project=${PROJECT_ID} \
+  --member="serviceAccount:github-deployer@jaorow.iam.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+```
 
 create GCP artifact repo in GCP called app
+enable IAM Service Account Credentials API
