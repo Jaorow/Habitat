@@ -84,7 +84,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
         with:
           service: '${{ env.SERVICE }}'
-          region: '${{ env.REGION }}'
+          region: 'us-central1' ## Updated this so i can add custom domain
           project_id: '${{ env.PROJECT_ID }}' # Explicitly pass the project ID
           image: '${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/app/${{ env.SERVICE }}:${{ github.sha }}'
           secrets: |

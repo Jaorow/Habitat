@@ -129,3 +129,15 @@ gcloud secrets add-iam-policy-binding gcp-key \
 
 create GCP artifact repo in GCP called app
 enable IAM Service Account Credentials API
+
+
+
+
+## Make the service public
+```
+gcloud run services add-iam-policy-binding app \
+  --region australia-southeast1 \
+  --member="allUsers" \
+  --role="roles/run.invoker" \
+  --project jaorow
+```
