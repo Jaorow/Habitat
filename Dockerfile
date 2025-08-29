@@ -27,4 +27,4 @@ COPY --from=frontend /frontend/build /app/frontend_build
 EXPOSE 8080
 
 # Use $PORT for Cloud Run compatibility
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
