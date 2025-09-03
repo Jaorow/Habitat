@@ -29,7 +29,6 @@ frontend_build_path = Path(__file__).parent / "dist"
 frontend_build_path = Path(os.getenv("FRONTEND_DIST_PATH", str(frontend_build_path)))
 
 # Only mount the full dist folder (Vite puts index.html + assets inside dist).
-# remove the old "/static" mount (Vite doesn't use CRA's /static)
 if frontend_build_path.exists():
     app.mount("/", StaticFiles(directory=str(frontend_build_path), html=True), name="frontend")
 
