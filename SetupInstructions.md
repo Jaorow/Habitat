@@ -141,3 +141,6 @@ gcloud run services add-iam-policy-binding app \
   --role="roles/run.invoker" \
   --project jaorow
 ```
+
+
+https://app-87492483233.us-central1.run.app
