@@ -21,10 +21,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ ./
 
 # Copy the built frontend into backend static folder
-COPY --from=frontend /frontend/build /app/frontend_build
+COPY --from=frontend /frontend/dist /app/dist
 
 # Expose port FastAPI will listen on
 EXPOSE 8080
 
-# Use $PORT for Cloud Run compatibility
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
